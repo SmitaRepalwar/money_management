@@ -1,0 +1,36 @@
+.table-con{
+    height: 95vh;
+    width: 95vw;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-con{
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.finance-table {
+    width: 80%;
+    height: 80%;
+    border-collapse: collapse;
+  }
+  
+  .finance-table th, .finance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .finance-table th {
+    background-color: #f2f2f2;
+    text-align: center;
+  }
+  
+  .finance-table tr:hover {
+    background-color: #f1f1f1;
+  }

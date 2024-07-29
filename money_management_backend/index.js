@@ -40,7 +40,7 @@ app.post('/add', async (req, res) => {
     // Convert the date to PostgreSQL-compatible format
     const formattedDate = new Date(date).toISOString().slice(0, 19).replace('T', ' ');
 
-    const getQuery = 'SELECT running_balance FROM transactions ORDER BY id DESC LIMIT 1';
+    const getQuery = 'SELECT running_balance FROM transactions ORDER BY date DESC LIMIT 1';
     const { rows } = await pool.query(getQuery);
 
     let balance = rows.length > 0 ? rows[0].running_balance : 0;
@@ -68,6 +68,7 @@ app.post('/add', async (req, res) => {
     res.status(500).json({ error: 'Database error' });
   }
 });
+
 
 const port = process.env.PORT || 4000;
 const HOST = '0.0.0.0'; // Bind to all network interfaces
