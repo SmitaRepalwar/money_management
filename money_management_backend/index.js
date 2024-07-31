@@ -35,12 +35,12 @@ app.get('/', async (req, res) => {
 
 app.post('/add', async (req, res) => {
   try {
-    const { id, type, amount, description, date } = req.body;
+    const { type, amount, description, date } = req.body;
 
     // Convert the date to PostgreSQL-compatible format
     const formattedDate = new Date(date).toISOString().slice(0, 19).replace('T', ' ');
 
-    const getQuery = 'SELECT running_balance FROM transactions ORDER BY date DESC LIMIT 1';
+    const getQuery = 'SELECT running_balance FROM transactions ORDER BY id DESC LIMIT 1';
     const { rows } = await pool.query(getQuery);
 
     let balance = rows.length > 0 ? rows[0].running_balance : 0;
@@ -51,15 +51,15 @@ app.post('/add', async (req, res) => {
         running_balance = parseInt(balance) + parseInt(amount);
         break;
       case 'debit':
-        running_balance = balance - amount;
+        running_balance = parseInt(balance) - parseInt(amount);
         break;
       default:
-        return res.status(400).json({ error: 'Invalid transaction type' });
+        return res.status(400).json({ error: 'Inval transaction type' });
     }
 
-    const data = [id, type, amount, description, formattedDate, running_balance];
+    const data = [type, amount, description, formattedDate, running_balance];
 
-    const query = 'INSERT INTO transactions (id, type, amount, description, date, running_balance) VALUES ($1, $2, $3, $4, $5, $6)';
+    const query = 'INSERT INTO transactions (type, amount, description, date, running_balance) VALUES ($1, $2, $3, $4, $5)';
     await pool.query(query, data);
     res.status(201).json({ message: 'Transaction added successfully' });
 

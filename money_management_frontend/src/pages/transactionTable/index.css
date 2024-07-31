@@ -8,6 +8,14 @@
     align-items: center;
 }
 
+button{
+  background-color: aquamarine;
+  border-width: 0px;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .button-con{
   width: 80%;
   display: flex;
@@ -24,6 +32,7 @@
   .finance-table th, .finance-table td {
     border: 1px solid #ddd;
     padding: 8px;
+    text-align: center;
   }
   
   .finance-table th {

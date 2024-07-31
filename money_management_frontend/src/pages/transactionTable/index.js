@@ -11,7 +11,7 @@ export const TransactionTable = () =>{
     const [data, setData] = useState([])
 
     useEffect(()=>{
-        axios.get('https://money-management-ltvk.onrender.com')
+        axios.get('http://localhost:4000')
         .then(function (response) {
             // handle success
             console.log(response);
