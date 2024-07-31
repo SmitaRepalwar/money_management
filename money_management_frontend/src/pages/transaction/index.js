@@ -36,7 +36,7 @@ const Transaction = () => {
        id
     }
    
-    axios.post('https://money-management-ltvk.onrender.com//add', data)
+    axios.post('https://money-management-ltvk.onrender.com/add', data)
     .then(function (response) {
       console.log(response);
     })
